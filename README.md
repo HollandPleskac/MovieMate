@@ -1,29 +1,18 @@
- > As you complete each section you **must** remove the prompt text. Every *turnin* of this project includes points for formatting of this README so keep it clean and keep it up to date. 
- > Prompt text is any lines beginning with "\>"
- > Replace anything between \<...\> with your project specifics and remove angle brackets. For example, you need to name your project and replace the header right below this line with that title (no angle brackets). 
-# \<Project title\>
- > Your author list below should include links to all members GitHub (remove existing author).
- 
- > Authors: \<[Jeffrey McDaniel](https://github.com/jmcda001)\>
+ Project Title: MovieMate - A Personalized Movie Recommendation System
 
- > You will be forming a group of **FOUR** students and working on an interesting project. The project has 4 phases, each one with specific requirements. A list of proposed project ideas that have been successful in previous quarters is listed in the project specifications document on Canvas. You can select an idea from the list and start thinking about the features you will implement. If you want to propose your own original idea, you will have to contact your instructor to discuss the project and obtain written permission before you submit your project proposal (Phase 1). The project work should be divided almost equally among team members. You can of course help each other, but it needs to be clear who will be responsible for which features. Additionally, you are expected to follow Scrum patterns, specifically the use of a Scrum (Project) board, Sprints, and Scrum meetings.
+Group Members: Shivam Singh: https://github.com/ShivamSinghNow Holland Pleskac: https://github.com/HollandPleskac Nashwaan Khan: https://github.com/UnrealN1K Bao: https://github.com/Bao-Huynh888
 
- > ## Expectations
- > * The backend of your project should be implemented in C++. If you wish to choose anoher programming language (e.g. Java, Python), please discuss with your lab TA to obtain permission.
- > * You can incorporate additional technologies/tools but they must be approved (in writing) by the instructor or the TA.
- > * Each member of the group **must** be committing code regularly and make sure their code is correctly attributed to them. We will be checking attributions to determine if there was equal contribution to the project.
- > * **Each member of the group must actively participate in the Github Project board, writing unit tests, and reviewing commited code.**
-> * All project phases are to be submitted to this GitHub repository. You should modify this README file to reflect the different phases of the project. In addition, you should regularly hold sprint meetings with your group. You will need to hold two to three scrum/check-in meetings with your lab TA/reader at different times in addition to the final demo.
+Description: MovieMate aims to create a personalized movie recommendation system, helping users discover movies tailored to their preferences and viewing history. With the overwhelming amount of content available today, having an intelligent recommendation system ensures that users spend less time searching and more time enjoying content.
 
-## Project Description
- > Your project description should summarize the project you are proposing. Be sure to include:
- > * Why is it important or interesting to you?
- > * What languages/tools/technologies do you plan to use? (This list may change over the course of the project)
- > * What will be the input/output of your project?
- > * What are the features that the project provides?
- > This description should be in enough detail that the TA/instructor can determine the complexity of the project and if it is sufficient for the team members to complete in the time allotted. 
- > 
- > You also need to set up an empty project board using GitHub projects (board view). Make sure you add the board under your project repository. You should also have a Product Backlog and In testing columns added.
+Why is it important or interesting to you? The world of cinema offers a vast array of experiences, emotions, and stories. However, the overwhelming choice can paralyze viewers in their selection process. We are passionate about utilizing data science to enhance user experiences. By developing MovieMate, we aim to bridge the gap between viewers and the perfect movie for their current mood or preference. We are also excited about delving deep into user-movie interaction data, understanding viewing patterns, and deriving meaningful insights from them.
+
+Languages/tools/technologies:
+
+Languages: Python Frameworks/Libraries: scikit-learn (for machine learning algorithms) pandas (for data manipulation) numpy (for numerical operations) Flask (for web application development) Datasets: MovieLens dataset (contains user ratings for movies) Additional metadata from sources like IMDb or TMDb (for more comprehensive data) Database: SQLite or PostgreSQL (to store user profiles, movie details, and ratings) Front-end (optional): HTML/CSS (for designing the web application's interface) JavaScript (for interactive features on the webpage)
+
+Input: New user: Demographics (e.g., age, gender), genre preferences, and ratings for a few movies to initialize the recommendation engine. Existing user: Login credentials, new movie ratings, and preferences update. Output: A list of recommended movies ranked by predicted user rating or relevance. Insights into the user's viewing patterns (e.g., most-watched genres, average ratings given). Features:
+
+User Profiles: Allow users to create profiles, input demographics, and rate movies. Personalized Recommendations: Based on user input and ratings, provide a list of top recommended movies. Interactive Rating System: Users can rate movies they've watched, which will further refine recommendations. Movie Search and Details: Allow users to search for movies and view detailed information including ratings, genres, and summaries. User Analytics Dashboard: Showcase insights such as most-watched genres, highest-rated movies, and viewing trends. Collaborative Filtering: Implement a collaborative filtering algorithm to recommend movies based on similar user behaviors. Content-based Filtering (optional): Analyze movie metadata to suggest movies similar to the ones the user likes. Hybrid Approach: Combine collaborative and content-based filtering for more accurate recommendations. Feedback System: Users can provide feedback on the accuracy of recommendations, which can be used for system improvement. This is a broad project description that covers the main aspects. Depending on the time and resources available, you can choose to implement the core features or expand with additional functionalities.
  > ## Phase II
  > In addition to completing the "User Interface Specification" and "Class Diagram" sections below, you will need to:
  > * Create an "Epic" (note) for each feature. Place these epics in the `Product Backlog` column
