@@ -32,6 +32,7 @@ User Profiles: Allow users to create profiles, input demographics, and rate movi
 
 ### UML Diagram
 ![image](https://github.com/cs100/final-project-nkhan040-bhuyn048-hples001-ssing299/assets/146979415/3ee6926c-e5c5-49cc-833e-7baaa96407d4)
+> Include the function to display the User's Dashboard. Implement class "User" to get the name, email, password, and the date the account was created for the user; in addition to the liked movies of the specific user. And a "Movie" class that uses variables name and image of the movie
 
 ### Screen Layouts
 > Include the layout of each of your screens. The layout should describe the screen’s major components such as menus and prompts for user inputs, expected output, and buttons (if applicable). Explain what is on the layout, and the purpose of each menu item, button, etc. If many screens share the same layout, start by describing the general layout and then list the screens that will be using that layout and the differences between each of them.
