@@ -30,6 +30,9 @@ User Profiles: Allow users to create profiles, input demographics, and rate movi
 ### Navigation Diagram
 ![CS100 Project (1)](https://github.com/cs100/final-project-nkhan040-bhuyn048-hples001-ssing299/assets/37969942/591be814-b7b3-4788-a078-795ace23c1b3)
 
+### UML Diagram
+![image](https://github.com/cs100/final-project-nkhan040-bhuyn048-hples001-ssing299/assets/146979415/3ee6926c-e5c5-49cc-833e-7baaa96407d4)
+
 ### Screen Layouts
 > Include the layout of each of your screens. The layout should describe the screen’s major components such as menus and prompts for user inputs, expected output, and buttons (if applicable). Explain what is on the layout, and the purpose of each menu item, button, etc. If many screens share the same layout, start by describing the general layout and then list the screens that will be using that layout and the differences between each of them.
 
