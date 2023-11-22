@@ -60,6 +60,13 @@ User Profiles: Allow users to create profiles, input demographics, and rate movi
  > * Any bugs you've identified and created issues for during the sprint. Do you plan on fixing them in the next sprint or are they lower priority?
  > * What tasks you are planning for this next sprint.
 
+User class is to manage information about each user using the website.  Each user will have a watched movies and a liked/disliked movies list.  This will be used by our algorithm for recommendations.  Each user has a relationship to multiple movie classes.
+
+Movie class is to manage info about movies.  Each class just has basic information about a movie (will be used for our algorithm) and will be used in the user class based on which movies the user likes. 
+
+![image](https://github.com/cs100/final-project-nkhan040-bhuyn048-hples001-ssing299/assets/56204301/a500d218-a074-4fbe-8cc0-1226eb2f0984)
+![image](https://github.com/cs100/final-project-nkhan040-bhuyn048-hples001-ssing299/assets/56204301/f30cd322-e350-46eb-a55b-4b6da06e0c54)
+
  
  > ## Final deliverable
  > All group members will give a demo to the reader during lab time. ou should schedule your demo on Calendly with the same reader who took your second scrum meeting. The reader will check the demo and the project GitHub repository and ask a few questions to all the team members. 
