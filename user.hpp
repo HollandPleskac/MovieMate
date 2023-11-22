@@ -15,9 +15,14 @@ class User {
     int getId() const;
     string getName() const;
 
+    void login();
+    void logout();
+
  private:
     int id;
     string name;
+    string email;
+    string password;
 };
 
 #endif

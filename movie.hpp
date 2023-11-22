@@ -19,6 +19,10 @@ class Movie {
     int id;
     string title;
     string genre;
+    string summary;
+    string imageUrl;
+    int likes;
+    int dislikes;
 };
 
 #endif
