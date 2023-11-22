@@ -63,15 +63,16 @@ User Profiles: Allow users to create profiles, input demographics, and rate movi
 User class is to manage information about each user using the website.  Each user will have a watched movies and a liked/disliked movies list.  This will be used by our algorithm for recommendations.  Each user has a relationship to multiple movie classes.
 
 Movie class is to manage info about movies.  Each class just has basic information about a movie (will be used for our algorithm) and will be used in the user class based on which movies the user likes. 
-Non-Solid Principles UML Diagram (v1)
+
+##### Non-Solid Principles UML Diagram (v1)
 
 ![image](https://github.com/cs100/final-project-nkhan040-bhuyn048-hples001-ssing299/assets/56204301/a500d218-a074-4fbe-8cc0-1226eb2f0984)
 
-New Navigation Diagram
+##### New Navigation Diagram
 
 ![image](https://github.com/cs100/final-project-nkhan040-bhuyn048-hples001-ssing299/assets/56204301/f30cd322-e350-46eb-a55b-4b6da06e0c54)
 
-Solid Principles UML Diagram
+##### Solid Principles UML Diagram
 
 ![image](https://github.com/cs100/final-project-nkhan040-bhuyn048-hples001-ssing299/assets/56204301/12b6398c-4b41-4feb-914c-f59374d72edf)
 
