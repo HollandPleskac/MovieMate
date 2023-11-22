@@ -77,11 +77,10 @@ Movie class is to manage info about movies.  Each class just has basic informati
 ![image](https://github.com/cs100/final-project-nkhan040-bhuyn048-hples001-ssing299/assets/56204301/12b6398c-4b41-4feb-914c-f59374d72edf)
 
 
-* What SOLID principle(s) did you apply? How did you apply it? i.e. describe the change.
-  We applied Single Responsibility Principle (SRP) because we gave each class only one responsibility. We updated our user class to only manage authentication.  We added more classes to manage user interactions with movies.  We applied Interface Segregation Principle (ISP) because clients aren't forced to depend on interfaces they don't use.  We added compositions only when a class cannot exist without another class and specified relationships between classes.  We also made sure to keep the minimum necessary classes while still adhering to SOLID principles to make development as simple as possible.
-* 
-* How did this change help you write better code?
-  Our codebase became more modular and maintainable with these changes. By applying the Single Responsibility Principle (SRP), we ensured that each class had only one reason to change. This separation of concerns makes it easier to manage and understand the code. For instance, the User class focusing solely on authentication simplifies its complexity and makes it less prone to errors during future modifications. The application of the Interface Segregation Principle (ISP) improved the overall design by ensuring that classes don't rely on unnecessary interfaces.  Incorporating compositions helped define clear relationships between classes ensuring they are tightly coupled only when necessary.
+##### What SOLID principle(s) did you apply? How did you apply it? i.e. describe the change.
+* We applied Single Responsibility Principle (SRP) because we gave each class only one responsibility. We updated our user class to only manage authentication.  We added more classes to manage user interactions with movies.  We applied Interface Segregation Principle (ISP) because clients aren't forced to depend on interfaces they don't use.  We added compositions only when a class cannot exist without another class and specified relationships between classes.  We also made sure to keep the minimum necessary classes while still adhering to SOLID principles to make development as simple as possible.
+##### How did this change help you write better code?
+* Our codebase became more modular and maintainable with these changes. By applying the Single Responsibility Principle (SRP), we ensured that each class had only one reason to change. This separation of concerns makes it easier to manage and understand the code. For instance, the User class focusing solely on authentication simplifies its complexity and makes it less prone to errors during future modifications. The application of the Interface Segregation Principle (ISP) improved the overall design by ensuring that classes don't rely on unnecessary interfaces.  Incorporating compositions helped define clear relationships between classes ensuring they are tightly coupled only when necessary.
 
  
  > ## Final deliverable
