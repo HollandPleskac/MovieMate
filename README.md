@@ -74,7 +74,8 @@ Movie class is to manage info about movies.  Each class just has basic informati
 
 ##### Solid Principles UML Diagram
 
-![image](https://github.com/cs100/final-project-nkhan040-bhuyn048-hples001-ssing299/assets/56204301/12b6398c-4b41-4feb-914c-f59374d72edf)
+![image](https://github.com/cs100/final-project-nkhan040-bhuyn048-hples001-ssing299/assets/56204301/be732d99-07f5-4b3e-9b3c-2cdfeb7bdff8)
+
 
 
 ##### What SOLID principle(s) did you apply? How did you apply it? i.e. describe the change.
