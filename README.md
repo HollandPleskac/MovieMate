@@ -60,6 +60,29 @@ User Profiles: Allow users to create profiles, input demographics, and rate movi
  > * Any bugs you've identified and created issues for during the sprint. Do you plan on fixing them in the next sprint or are they lower priority?
  > * What tasks you are planning for this next sprint.
 
+User class is to manage information about each user using the website.  Each user will have a watched movies and a liked/disliked movies list.  This will be used by our algorithm for recommendations.  Each user has a relationship to multiple movie classes.
+
+Movie class is to manage info about movies.  Each class just has basic information about a movie (will be used for our algorithm) and will be used in the user class based on which movies the user likes. 
+
+##### Non-Solid Principles UML Diagram (v1)
+
+![image](https://github.com/cs100/final-project-nkhan040-bhuyn048-hples001-ssing299/assets/56204301/a500d218-a074-4fbe-8cc0-1226eb2f0984)
+
+##### New Navigation Diagram
+
+![image](https://github.com/cs100/final-project-nkhan040-bhuyn048-hples001-ssing299/assets/56204301/f30cd322-e350-46eb-a55b-4b6da06e0c54)
+
+##### Solid Principles UML Diagram
+
+![image](https://github.com/cs100/final-project-nkhan040-bhuyn048-hples001-ssing299/assets/56204301/be732d99-07f5-4b3e-9b3c-2cdfeb7bdff8)
+
+
+
+##### What SOLID principle(s) did you apply? How did you apply it? i.e. describe the change.
+* We applied Single Responsibility Principle (SRP) because we gave each class only one responsibility. We updated our user class to only manage authentication.  We added more classes to manage user interactions with movies.  We applied Interface Segregation Principle (ISP) because clients aren't forced to depend on interfaces they don't use.  We added compositions only when a class cannot exist without another class and specified relationships between classes.  We also made sure to keep the minimum necessary classes while still adhering to SOLID principles to make development as simple as possible.
+##### How did this change help you write better code?
+* Our codebase became more modular and maintainable with these changes. By applying the Single Responsibility Principle (SRP), we ensured that each class had only one reason to change. This separation of concerns makes it easier to manage and understand the code. For instance, the User class focusing solely on authentication simplifies its complexity and makes it less prone to errors during future modifications. The application of the Interface Segregation Principle (ISP) improved the overall design by ensuring that classes don't rely on unnecessary interfaces.  Incorporating compositions helped define clear relationships between classes ensuring they are tightly coupled only when necessary.
+
  
  > ## Final deliverable
  > All group members will give a demo to the reader during lab time. ou should schedule your demo on Calendly with the same reader who took your second scrum meeting. The reader will check the demo and the project GitHub repository and ask a few questions to all the team members. 
