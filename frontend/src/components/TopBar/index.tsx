@@ -9,9 +9,8 @@ import SearchIcon from './Icons/SearchIcon'
 import XIcon from './Icons/XIcon'
 import { usePathname } from 'next/navigation'
 // import AccountDropdown from './AccountDropdown'
-import { signOut, useSession } from 'next-auth/react'
 import { useSearchContext } from '@/context/searchContext'
-
+import {signIn, signOut, useSession} from 'next-auth/react'
 
 export default function TopBar(): React.ReactElement {
   const { data: session, status } = useSession()
@@ -52,7 +51,8 @@ export default function TopBar(): React.ReactElement {
             </Link>
 
             <div className='pl-5 flex items-center w-full justify-between' >
-              <Link
+              {(status !== 'loading' && session) ? (
+                <Link
                 href='/browse?sort=Trending'
                 className={`transition duration-200 ${pathname === '/browse'
                   ? 'text-white font-semibold'
@@ -61,6 +61,8 @@ export default function TopBar(): React.ReactElement {
               >
                 Watch History
               </Link>
+              ): <div></div>}
+              
 
               <div className='hidden lg:flex items-center gap-x-4 text-white'>
 
@@ -104,10 +106,10 @@ export default function TopBar(): React.ReactElement {
                     <XIcon />
                   </button>
                 </div>
-                {/* {(status !== 'loading' && session) && <AccountDropdown />} */}
+                {(status !== 'loading' && session) && <button onClick={() => signOut()} >Sign Out</button>}
                 {(status !== 'loading' && !session) && (
                   <div className='flex items-center gap-x-3 text-white font-semibold' >
-                    <Link href='/login' className='text-[#e5e5e5] hover:text-[#979797]' >Login</Link>
+                    <Link href='/api/auth/signin' className='text-[#e5e5e5] hover:text-[#979797]' >Login</Link>
                   </div>
                 )}
                 {status === "loading" && (
