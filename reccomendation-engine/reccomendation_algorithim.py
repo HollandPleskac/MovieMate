@@ -63,8 +63,10 @@ def reccomend_movies(userId, numReccomendations = 5):
     valid_predicted_ratings = [rating for rating in predicted_ratings if rating[1] is not None]
     valid_predicted_ratings.sort(key=lambda x: x[1], reverse=True)
     reccomend_movie_ids = [movie_id for movie_id,  _ in predicted_ratings[:numReccomendations]]
-    return movies_df[movies_df['movieId'].isin(reccomend_movie_ids)]
+    recommended_movies_dict = {userId: reccomend_movie_ids}
+    return recommended_movies_dict
 
-recommended_movies = reccomend_movies(4,5)
+
+recommended_movies = reccomend_movies(1,7)
 print("Recommended Movies:")
 print(recommended_movies)

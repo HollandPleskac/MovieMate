@@ -64,10 +64,15 @@ def test_predict_rating_different_neighbor_counts():
         assert isinstance(predicted_rating, (float, type(None)))
 
 
-def test_recommend_movies():
-    recommendations = reccomend_movies(1,5)
-    assert isinstance(recommendations, pd.DataFrame)
-    assert len(recommendations) <= 5  # Checks if 5 or fewer recommendations are returned
+def test_recommend_movies_valid_user():
+    
+    recommendations = reccomend_movies(1, 5)
+    assert isinstance(recommendations, dict), "The output should be a dictionary."
+    assert 1 in recommendations, "The dictionary should contain the user ID as a key."
+    assert isinstance(recommendations[1], list), "The value should be a list of movie IDs."
+    assert len(recommendations[1]) <= 5, "The list should not contain more than the requested number of recommendations."
+
+
 
 def test_recommend_movies_different_counts():
     for count in [1, 3, 10]:
@@ -79,3 +84,6 @@ def test_extract_year():
     assert extractYear("Jumanji (1995)") == 1995
     assert extractYear("Powder (1995)") == 1995
 
+def test_cleanTitle():
+    assert cleanTitle("Movie!@# Title (2021)") == "movie title"
+    assert cleanTitle("Another Title(2010)") == "another title"
