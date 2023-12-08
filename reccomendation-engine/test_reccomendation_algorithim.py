@@ -1,7 +1,7 @@
 import pytest
 import pandas as pd
-from pytest_mock import mocker
 from reccomendation_algorithim import pearson_correlation, find_nearest_neighbor, predict_rating, reccomend_movies
+from moviespreprocess import extractYear, cleanTitle
 
 
 def test_pearson_correlation():
@@ -74,4 +74,8 @@ def test_recommend_movies_different_counts():
         recommendations = reccomend_movies(3, count)
         assert len(recommendations) <= count
     
+
+def test_extract_year():
+    assert extractYear("Jumanji (1995)") == 1995
+    assert extractYear("Powder (1995)") == 1995
 
