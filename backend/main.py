@@ -163,4 +163,7 @@ def get_movies(user_email: str):
     # Query to find movies not rated by the user
     query_results = session.query(Movie).filter(~Movie.id.in_(rated_movie_ids)).all()
     
-    
+    result_formatted = [{"id": movie.id, "name": movie.name, "description": movie.description} 
+                        for movie in query_results]
+
+    return {"data": result_formatted}
