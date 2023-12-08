@@ -153,3 +153,11 @@ def update_rating(update_rating_request: UpdateRatingRequest):
     session.commit()
 
     return {"result": "success"}
+
+    @app.get("/all-movies")
+def get_movies(user_email: str):
+
+    # Subquery to find movie IDs rated by the user
+    rated_movie_ids = session.query(Rating.movieId).filter(Rating.userEmail == user_email).subquery()
+
+    
