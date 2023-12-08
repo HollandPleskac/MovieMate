@@ -116,3 +116,14 @@ def read_item(user_request: CreateUserRequest):
         session.commit()
         return {"status": f"create user {email}"}
     return {"status": f"user {email} already exists"}
+
+@app.get("/rated-movies")
+def read_item(email: str):
+    query_results = session.query( Movie.id, Movie.name, Movie.description , Rating.rating,).join(User, email== Rating.userEmail).join(Movie, Movie.id == Rating.movieId).distinct().all()
+    result_formatted = [{"id": id, "name": name, "description": description, "rating": rating} for id, name, description, rating in query_results]
+    return {"data": result_formatted}
+
+class UpdateRatingRequest(BaseModel):
+    email: str
+    movieId: int
+    newRating: int
