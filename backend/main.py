@@ -96,3 +96,23 @@ app.add_middleware(
     allow_methods=["*"],  # Allows all methods
     allow_headers=["*"],  # Allows all headers
 )
+
+@app.get("/")
+def read_root():
+    results = session.query(Rating).all() # select everything from people table
+    print(results)
+    return {"Hello": "World"}
+
+class CreateUserRequest(BaseModel):
+    email: str
+
+@app.post("/create-user")
+def read_item(user_request: CreateUserRequest):
+    email = user_request.email
+    query_results = session.query(User).filter(User.email == email).all()
+    if (len(query_results) == 0):
+        u = User(email)
+        session.add(u)
+        session.commit()
+        return {"status": f"create user {email}"}
+    return {"status": f"user {email} already exists"}
