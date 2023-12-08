@@ -1,10 +1,8 @@
 import pytest
 import pandas as pd
+from pytest_mock import mocker
 from reccomendation_algorithim import pearson_correlation, find_nearest_neighbor, predict_rating, reccomend_movies
 
-
-# Load the mock dataset
-UserItemMatrix = pd.read_csv('testcentereduseritem_matrix.csv', index_col=0)
 
 def test_pearson_correlation():
     # Assuming user1 and user2 are valid user IDs in your test dataset
@@ -15,10 +13,25 @@ def test_pearson_correlation():
     else:
         assert correlation == 0
 
-def test_pearson_identical_ratings():
+def test_pearson_identical_ratings(mocker):
     # Choose user IDs with identical ratings for their common movies
     correlation = pearson_correlation(1, 2)
     assert correlation == 1
+
+def test_pearson_no_common_movies():
+    # Choose user IDs that have no common movies rated
+    correlation = pearson_correlation(2,3)
+    assert correlation == 0
+
+def test_pearson_one_common_movie():
+    # Choose user IDs that have exactly one common movie rated
+    correlation = pearson_correlation(3, 4)
+    assert correlation == 0
+
+def test_pearson_opposite_ratings():
+    # Choose user IDs with opposite ratings for their common movies
+    correlation = pearson_correlation(5, 6)
+    assert correlation < 0
 
 def test_find_nearest_neighbor():
     # Test with a valid user ID
@@ -38,5 +51,5 @@ def test_recommend_movies():
     recommendations = reccomend_movies(1,5)
     assert isinstance(recommendations, pd.DataFrame)
     assert len(recommendations) <= 5  # Checks if 5 or fewer recommendations are returned
-    # Additional checks can include verifying that recommended movie IDs are in the dataset, etc.
+    
 

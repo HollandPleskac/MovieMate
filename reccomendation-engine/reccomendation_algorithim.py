@@ -3,19 +3,27 @@ from scipy.stats import pearsonr
 import numpy as np
 
 #read in the preprocessed data
-UserItemMatrix = pd.read_csv('centereduseritem_matrix.csv', index_col=0)
+UserItemMatrix = pd.read_csv('testcentereduseritem_matrix.csv', index_col=0)
 movies_df = pd.read_csv('movies_encoded.csv')
 
 def pearson_correlation(user1, user2):
     user1_ratings = UserItemMatrix.loc[user1]
     user2_ratings = UserItemMatrix.loc[user2]
 
+    #print(user1_ratings.index)
+    #print(user1_ratings)
+    
+    #print(user2_ratings.index)
+    #print(user2_ratings)
+
+
     # Filter to keep only movies rated by both users
     common_movies = user1_ratings.notna() & user2_ratings.notna()
+    #print(common_movies) #debug print statement
     user1_common_ratings = user1_ratings[common_movies]
-    print(user1_common_ratings)
+    #print(user1_common_ratings)#debug print statement
     user2_common_ratings = user2_ratings[common_movies]
-    print(user1_common_ratings)
+    #print(user1_common_ratings)#debug print statement
 
     # Check if there are common movies rated by both users
     if len(user1_common_ratings) > 1 and len(user2_common_ratings) > 1:
