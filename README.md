@@ -97,6 +97,7 @@ Movie class is to manage info about movies.  Each class just has basic informati
  > Instructions on installing and running your application
  ## Testing
  > How was your project tested/validated? If you used CI, you should have a "build passing" badge in this README.
-We test our project using various testing methods such as: unit testing, parameterized testing, test fixtures and cleanup, and testing framworks. Unit testing was used to ensure the movie functions behaves properly. Using parameterized testing allows the preprocess functions to take different inputs and expected outputs. Most of the project was tested using the pytest testing framework which provides features for writing and organizing tests, and simplifying test executions.
+ > We test our project using various testing methods such as: unit testing, parameterized testing, test fixtures and cleanup, and testing framworks. Unit testing was used to ensure the movie functions behaves 
+   properly. Using parameterized testing allows the preprocess functions to take different inputs and expected outputs. Most of the project was tested using the pytest testing framework which provides features for writing and organizing tests, and simplifying test executions.
 In summary, we used unit testing to isolate specific functions that needed to be tested and the marameterized tests coveres various scenerios of test that take different inputs. Pytest enhnaced the structure and readability of our tests and ensures our testing environment is reliable.
  
