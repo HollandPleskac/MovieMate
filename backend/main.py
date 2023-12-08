@@ -127,3 +127,29 @@ class UpdateRatingRequest(BaseModel):
     email: str
     movieId: int
     newRating: int
+
+@app.post("/rate-movie")
+def update_rating(update_rating_request: UpdateRatingRequest):
+    email = update_rating_request.email
+    movieId = update_rating_request.movieId
+    newRating = update_rating_request.newRating
+
+    # Check if the rating already exists
+    existing_rating = session.query(Rating)\
+                             .filter(Rating.userEmail == email, Rating.movieId == movieId)\
+                             .first()
+
+    if existing_rating:
+        # Update the existing rating
+        update_stmt = update(Rating)\
+            .where(Rating.userEmail == email, Rating.movieId == movieId)\
+            .values(rating=newRating)
+        session.execute(update_stmt)
+    else:
+        # Insert a new rating
+        insert_stmt = insert(Rating).values(userEmail=email, movieId=movieId, rating=newRating)
+        session.execute(insert_stmt)
+
+    session.commit()
+
+    return {"result": "success"}
