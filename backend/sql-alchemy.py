@@ -13,6 +13,7 @@ db_host = os.getenv('DB_HOST')
 db_port = os.getenv('DB_PORT')
 db_name = os.getenv('DB_NAME')
 
+
 Base = declarative_base()
 
 class User(Base):
@@ -62,6 +63,7 @@ class Rating(Base):
     def __repr__(self):
         return f"({self.userEmail}) ({self.movieId}) {self.rating}"
 
+
 # connect to postgres    
 database_url = f"postgresql://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}"
 engine = create_engine(database_url)
@@ -78,19 +80,20 @@ session = Session()
 
 
 # # Add row to table
-# u = User("hollandpleskac@gmail.com")
-# session.add(u) # add person to db
-# session.commit() # apply changes to db
+u = User("hollandpleskac@gmail.com")
+session.add(u) # add person to db
+session.commit() # apply changes to db
+
 
 # # Add row to table
-# m = Movie("Movie2", "desc", "https://www.twincities.com/wp-content/uploads/2022/05/Summer_Film_Preview_71939.jpg")
-# session.add(m)
-# session.commit()
+m = Movie("Movie2", "desc", "https://www.twincities.com/wp-content/uploads/2022/05/Summer_Film_Preview_71939.jpg")
+session.add(m)
+session.commit()
 
 # # Add row to table
-# m = Rating(u.email, m.id, 4)
-# session.add(m)
-# session.commit()
+m = Rating(u.email, m.id, 4)
+session.add(m)
+session.commit()
 
 
 # Query from table
@@ -110,4 +113,4 @@ print(results)
 
 # Query from table (things owned by person)
 # results = session.query(Thing, Person).filter(Thing.owner == Person.ssn).filter(Person.firstname == "holland").all()
-# print("res",results)```
+# print("res",results)

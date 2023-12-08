@@ -55,6 +55,7 @@ class Movie(Base):
     def __repr__(self):
         return f"({self.id}) {self.name}"
 
+
 class Rating(Base):
     __tablename__ = "ratings"
 
@@ -154,7 +155,7 @@ def update_rating(update_rating_request: UpdateRatingRequest):
 
     return {"result": "success"}
 
-    @app.get("/all-movies")
+@app.get("/all-movies")
 def get_movies(user_email: str):
 
     # Subquery to find movie IDs rated by the user
