@@ -53,7 +53,7 @@ export default function TopBar(): React.ReactElement {
             <div className='pl-5 flex items-center w-full justify-between' >
               {(status !== 'loading' && session) ? (
                 <Link
-                href='/browse?sort=Trending'
+                href='/watch-history'
                 className={`transition duration-200 ${pathname === '/browse'
                   ? 'text-white font-semibold'
                   : 'text-[#e5e5e5] hover:text-[#979797]'
