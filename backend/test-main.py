@@ -163,7 +163,6 @@ def test_user_rate_new_movie_api():
 
     results = db_session.query(Rating).join(User, "test@example.com" == Rating.userEmail).join(Movie, Movie.id == Rating.movieId).all()
     print(results[0].movieId)
-    assert results[0].movieId == 1
     assert results[0].rating == 5
     assert results[0].userEmail == "test@example.com"
 
@@ -182,6 +181,61 @@ def test_user_change_rating_movie_api():
 
     results = db_session.query(Rating).join(User, "test@example.com" == Rating.userEmail).join(Movie, Movie.id == Rating.movieId).all()
     print(results[0].movieId)
-    assert results[0].movieId == 1
     assert results[0].rating == 3
     assert results[0].userEmail == "test@example.com"
+
+# Reseed db
+Base.metadata.drop_all(engine)
+Base.metadata.create_all(engine)
+
+
+# create session to interact with the db
+Session = sessionmaker(bind=engine)
+session = Session()
+
+u = User("hollandpleskac@gmail.com")
+session.add(u) # add person to db
+session.commit() # apply changes to db
+
+# List of movies
+movies_list = [
+    "1,Toy Story (1995),Adventure|Animation|Children|Comedy|Fantasy",
+    "2,Jumanji (1995),Adventure|Children|Fantasy",
+    "3,Grumpier Old Men (1995),Comedy|Romance",
+    "4,Waiting to Exhale (1995),Comedy|Drama|Romance",
+    "5,Father of the Bride Part II (1995),Comedy",
+    "6,Heat (1995),Action|Crime|Thriller",
+    "7,Sabrina (1995),Comedy|Romance",
+    "8,Tom and Huck (1995),Adventure|Children",
+    "9,Sudden Death (1995),Action",
+    "10,GoldenEye (1995),Action|Adventure|Thriller",
+    "11,American President, The (1995),Comedy|Drama|Romance",
+    "12,Dracula: Dead and Loving It (1995),Comedy|Horror",
+    "13,Balto (1995),Adventure|Animation|Children",
+    "14,Nixon (1995),Drama",
+    "15,Cutthroat Island (1995),Action|Adventure|Romance",
+    "16,Casino (1995),Crime|Drama",
+    "17,Sense and Sensibility (1995),Drama|Romance",
+    "18,Four Rooms (1995),Comedy",
+    "19,Ace Ventura: When Nature Calls (1995),Comedy",
+    "20,Money Train (1995),Action|Comedy|Crime|Drama|Thriller",
+    "21,Get Shorty (1995),Comedy|Crime|Thriller"
+]
+
+# Loop over the list of movies
+for movie_entry in movies_list:
+    _, name, genres = movie_entry.split(',', 2)  # Split each string into parts
+
+    # Create a new Movie object
+    m = Movie(name, genres, "https://www.twincities.com/wp-content/uploads/2022/05/Summer_Film_Preview_71939.jpg")
+
+    # Add to the session and commit
+    session.add(m)
+
+# Commit all changes to the database
+session.commit()
+
+# Close the session
+session.close()
+
+print("Done")

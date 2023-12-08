@@ -76,10 +76,6 @@ class Rating(Base):
 database_url = f"postgresql://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}"
 engine = create_engine(database_url)
 
-# create session to interact with the db
-Session = sessionmaker(bind=engine)
-session = Session()
-
 class UserModel(BaseModel):
     email: str
 
@@ -87,6 +83,8 @@ class MovieReviewModel(BaseModel):
     user_email: str
     movie_id: int
     rating: float
+
+Session = sessionmaker(bind=engine)
 
 app = FastAPI()
 
@@ -100,8 +98,10 @@ app.add_middleware(
 
 @app.get("/")
 def read_root():
+    session = Session()
     results = session.query(Rating).all() # select everything from people table
     print(results)
+    session.close()
     return {"Hello": "World"}
 
 class CreateUserRequest(BaseModel):
@@ -109,19 +109,24 @@ class CreateUserRequest(BaseModel):
 
 @app.post("/create-user")
 def read_item(user_request: CreateUserRequest):
+    session = Session()
     email = user_request.email
     query_results = session.query(User).filter(User.email == email).all()
     if (len(query_results) == 0):
         u = User(email)
         session.add(u)
         session.commit()
+        session.close()
         return {"status": f"create user {email}"}
+    session.close()
     return {"status": f"user {email} already exists"}
 
 @app.get("/rated-movies")
 def read_item(email: str):
+    session = Session()
     query_results = session.query( Movie.id, Movie.name, Movie.description , Rating.rating,).join(User, email== Rating.userEmail).join(Movie, Movie.id == Rating.movieId).distinct().all()
     result_formatted = [{"id": id, "name": name, "description": description, "rating": rating} for id, name, description, rating in query_results]
+    session.close()
     return {"data": result_formatted}
 
 class UpdateRatingRequest(BaseModel):
@@ -131,6 +136,7 @@ class UpdateRatingRequest(BaseModel):
 
 @app.post("/rate-movie")
 def update_rating(update_rating_request: UpdateRatingRequest):
+    session = Session()
     email = update_rating_request.email
     movieId = update_rating_request.movieId
     newRating = update_rating_request.newRating
@@ -152,11 +158,13 @@ def update_rating(update_rating_request: UpdateRatingRequest):
         session.execute(insert_stmt)
 
     session.commit()
+    session.close()
 
     return {"result": "success"}
 
 @app.get("/all-movies")
 def get_movies(user_email: str):
+    session = Session()
 
     # Subquery to find movie IDs rated by the user
     rated_movie_ids = session.query(Rating.movieId).filter(Rating.userEmail == user_email).subquery()
@@ -167,4 +175,10 @@ def get_movies(user_email: str):
     result_formatted = [{"id": movie.id, "name": movie.name, "description": movie.description} 
                         for movie in query_results]
 
+    session.close()
     return {"data": result_formatted}
+
+    # Create a function to use in separate python file
+
+    # input: list of same_user_id, movieId, rating
+    # output: list of same_user_id, movieId, rating
