@@ -70,3 +70,29 @@ class Rating(Base):
 
     def __repr__(self):
         return f"({self.userEmail}) ({self.movieId}) {self.rating}"
+
+# connect to postgres    
+database_url = f"postgresql://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}"
+engine = create_engine(database_url)
+
+# create session to interact with the db
+Session = sessionmaker(bind=engine)
+session = Session()
+
+class UserModel(BaseModel):
+    email: str
+
+class MovieReviewModel(BaseModel):
+    user_email: str
+    movie_id: int
+    rating: float
+
+app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all methods
+    allow_headers=["*"],  # Allows all headers
+)
