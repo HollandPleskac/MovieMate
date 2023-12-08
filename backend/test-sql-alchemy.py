@@ -97,25 +97,3 @@ def test_create_user(db_session):
     user = db_session.query(User).filter_by(email="test55@example.com").first()
     assert user is not None
     assert user.email == "test55@example.com"
-
-
-
-    # assert response.status_code == 200
-    # assert response.json() == {"msg": "Hello World"}
-
-# def test_create_user_api(test_client, db_session):
-#     print("Test",test_client)
-#     # Test the successful creation of a user
-#     user_data = {"email": "testuser2@example.com"}
-#     response = test_client.post("/create-user", json=user_data)
-
-#     # assert response.status_code == 200
-#     # assert response.json() == {"status": f"create user {user_data['email']}"}
-
-#     print("resp",response)
-#     assert 1==1
-#     # Clean up - delete the created user from the database
-#     user = db_session.query(User).filter(User.email == user_data['email']).first()
-#     if user:
-#         db_session.delete(user)
-#         db_session.commit()

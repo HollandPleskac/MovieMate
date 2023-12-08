@@ -166,6 +166,43 @@ def test_user_rate_new_movie_api():
     assert results[0].rating == 5
     assert results[0].userEmail == "test@example.com"
 
+
+def test_user_must_exist_to_rate_movie():
+    # URL for the create-user endpoint
+    url = "http://127.0.0.1:8000/rate-movie"
+
+    # JSON data to send in the POST request
+    user_data = {"email": "doesntexist@example.com", "movieId":1, "newRating":5}
+
+    # Send a POST request
+    response = requests.post(url, json=user_data)
+
+    assert response.status_code == 500
+
+def test_movie_must_exist_to_rate_movie():
+    # URL for the create-user endpoint
+    url = "http://127.0.0.1:8000/rate-movie"
+
+    # JSON data to send in the POST request
+    user_data = {"email": "test@example.com", "movieId":111111, "newRating":5}
+
+    # Send a POST request
+    response = requests.post(url, json=user_data)
+
+    assert response.status_code == 500
+
+def test_must_give_a_valid_rating():
+    # URL for the create-user endpoint
+    url = "http://127.0.0.1:8000/rate-movie"
+
+    # JSON data to send in the POST request
+    user_data = {"email": "test@example.com", "movieId":1, "newRating":"test"}
+
+    # Send a POST request
+    response = requests.post(url, json=user_data)
+
+    assert response.status_code == 422
+
 def test_user_change_rating_movie_api():
     # URL for the create-user endpoint
     url = "http://127.0.0.1:8000/rate-movie"
@@ -183,6 +220,40 @@ def test_user_change_rating_movie_api():
     print(results[0].movieId)
     assert results[0].rating == 3
     assert results[0].userEmail == "test@example.com"
+
+def test_user_cannot_change_movie_that_doesnt_exist():
+    # URL for the create-user endpoint
+    url = "http://127.0.0.1:8000/rate-movie"
+
+    # JSON data to send in the POST request
+    user_data = {"email": "test@example.com", "movieId":234234, "newRating":3}
+
+    # Send a POST request
+    response = requests.post(url, json=user_data)
+    assert response.status_code == 500
+
+
+def test_correct_number_recommendations_with_rated_movies_api():
+    # URL for the create-user endpoint
+    url = "http://localhost:8000/all-movies?user_email=test@example.com"
+
+    # Send a GET request
+    response = requests.get(url)
+
+    results = response.json()['data']
+    print("LENGTH OF RESULTS", len(results))
+    assert len(results) == 20
+
+def test_correct_number_recommendations_with_no_rated_movies_api():
+    # URL for the create-user endpoint
+    url = "http://localhost:8000/all-movies?user_email=hollandpleskac@gmail.com"
+
+    # Send a GET request
+    response = requests.get(url)
+
+    results = response.json()['data']
+    print("LENGTH OF RESULTS", len(results))
+    assert len(results) == 22
 
 # Reseed db
 Base.metadata.drop_all(engine)

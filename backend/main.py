@@ -6,6 +6,7 @@ from pydantic import BaseModel
 from dotenv import load_dotenv
 from sqlalchemy import create_engine, update, insert, ForeignKey, Column, String, Integer, CHAR
 from sqlalchemy.orm import declarative_base, sessionmaker
+from sqlalchemy.orm import joinedload
 
 from typing import List
 
@@ -168,12 +169,28 @@ def get_movies(user_email: str):
 
     # Subquery to find movie IDs rated by the user
     rated_movie_ids = session.query(Rating.movieId).filter(Rating.userEmail == user_email).subquery()
+    print("rated movie ids all", session.query(rated_movie_ids).all())
+
+    for movie_id in session.query(rated_movie_ids).all():
+        print("MOVIE ID",movie_id)
 
     # Query to find movies not rated by the user
-    query_results = session.query(Movie).filter(~Movie.id.in_(rated_movie_ids)).all()
+    # query_results = session.query(Movie).filter(~Movie.id.in_(rated_movie_ids)).all()
+    query_results = session.query(Movie.id, Movie.name, Movie.description,Rating.rating).\
+                outerjoin(Rating, Movie.id == Rating.movieId).\
+                filter(~Movie.id.in_(rated_movie_ids)).\
+                all()
     
-    result_formatted = [{"id": movie.id, "name": movie.name, "description": movie.description} 
+    # for movie in query_results:
+    #     print(movie)
+    
+    result_formatted = [{"id": movie.id, "name": movie.name, "description": movie.description, "rating": movie.rating} 
                         for movie in query_results]
+    print("results formatted", result_formatted[0])
+
+    # function to get movie recommendations pass in results formatted
+
+    # return that output
 
     session.close()
     return {"data": result_formatted}
