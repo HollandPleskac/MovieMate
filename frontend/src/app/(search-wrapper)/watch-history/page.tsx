@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import MovieCard from '../MovieCard';
-import { useSession } from 'next-auth/react';
+'use client'
+
+import MovieCard from "@/components/MovieCard";
+import { useEffect, useState } from "react";
+import { useSession } from "next-auth/react"
 
 type Movie = {
   id: number;
@@ -9,8 +11,10 @@ type Movie = {
   description: string;
 };
 
-const MovieList: React.FC = () => {
-  const { data: session, status } = useSession()
+
+export default function Home() {
+  const { data: session } = useSession()  
+
   const [movies, setMovies] = useState<Movie[]>([]);
   const [loading, setLoading] = useState(false);
   
@@ -18,7 +22,7 @@ const MovieList: React.FC = () => {
     const fetchMovies = async () => {
       setLoading(true);
       try {
-        const response = await fetch(`http://127.0.0.1:8000/all-movies?user_email=${session?.user?.email}`, {
+        const response = await fetch(`http://127.0.0.1:8000/rated-movies?email=${session?.user?.email}`, {
           method: 'GET',
           headers: {
               'Content-Type': 'application/json',
@@ -34,7 +38,7 @@ const MovieList: React.FC = () => {
           id: movie.id,
           name: movie.name,
           description: movie.description,
-          rating: null
+          rating: movie.rating,
         }));
 
         console.log("res",fetchedMovies)
@@ -55,14 +59,20 @@ const MovieList: React.FC = () => {
   }
 
   return (
-    <div className='container mx-auto px-4 mt-8'>
-      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
-        {movies && movies.map((movie) => (
-          <MovieCard key={movie.id} {...movie}/>
-        ))}
-      </div>
-    </div>
-  );
+    <>
+      <main className='w-full flex flex-col h-full'>
+        <div className='container mx-auto px-4 mt-8'>
+          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+            {movies && movies.map((movie, id) => {
+              console.log("movie",movie)
+              return (
+                // <h1>{movie.id}</h1>
+                <MovieCard key={id} id={movie.id} name={movie.name} description={movie.description} rating={movie.rating}  />
+              )
+            })}
+          </div>
+        </div>
+      </main>
+    </>
+  )
 }
-
-export default MovieList;
