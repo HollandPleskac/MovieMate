@@ -37,3 +37,14 @@ class User(Base):
     def __repr__(self):
         return f"{self.email}"
 
+class Movie(Base):
+    __tablename__ = "movies"
+
+    id = Column("id", Integer, primary_key=True, autoincrement=True)
+    name = Column("name",String, nullable=False)
+    description = Column("description", String, nullable=False)
+    imageUrl = Column("imageUrl", String, nullable=False)
+
+    # owner = Column(Integer, ForeignKey("people.ssn"))
+
+    
