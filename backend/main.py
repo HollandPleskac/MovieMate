@@ -22,3 +22,18 @@ db_port = os.getenv('DB_PORT')
 db_name = os.getenv('DB_NAME')
 
 
+Base = declarative_base()
+
+
+class User(Base):
+    __tablename__ = "users"
+
+    email = Column("email", String, primary_key=True)
+
+    def __init__(self, email):
+        self.email = email
+
+    # for printing User objects
+    def __repr__(self):
+        return f"{self.email}"
+
