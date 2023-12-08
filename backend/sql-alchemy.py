@@ -46,3 +46,12 @@ class Movie(Base):
         return f"({self.id}) {self.name}"
 
 
+class Rating(Base):
+    __tablename__ = "ratings"
+
+    id = Column("id", Integer, primary_key=True, autoincrement=True)
+    userEmail = Column(String, ForeignKey("users.email"), nullable=False)  # Reference to User.email
+    movieId = Column(Integer, ForeignKey("movies.id"), nullable=False)
+    rating = Column("rating", Integer, nullable=True)
+
+    
