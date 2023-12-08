@@ -61,3 +61,23 @@ class Rating(Base):
 
     def __repr__(self):
         return f"({self.userEmail}) ({self.movieId}) {self.rating}"
+
+# connect to postgres    
+database_url = f"postgresql://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}"
+engine = create_engine(database_url)
+
+# use a local sqlite db (doesn't support postgres features)
+# engine = create_engine('sqlite:///local_database.db')
+
+# take classes extending from base and create them in db
+Base.metadata.create_all(bind=engine)
+
+# create session to interact with the db
+Session = sessionmaker(bind=engine)
+session = Session()
+
+
+# # Add row to table
+# u = User("hollandpleskac@gmail.com")
+# session.add(u) # add person to db
+# session.commit() # apply changes to db
