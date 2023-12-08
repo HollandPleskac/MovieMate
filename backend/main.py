@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 from sqlalchemy import create_engine, update, insert, ForeignKey, Column, String, Integer, CHAR
 from sqlalchemy.orm import declarative_base, sessionmaker
 from sqlalchemy.orm import joinedload
+from reccomendation_algorithim import reccomend_movies
 
 from typing import List
 
@@ -175,27 +176,22 @@ def get_movies(user_email: str):
         print("MOVIE ID",movie_id)
 
     # Query to find movies not rated by the user
-    # query_results = session.query(Movie).filter(~Movie.id.in_(rated_movie_ids)).all()
     query_results = session.query(Movie.id, Movie.name, Movie.description,Rating.rating).\
                 outerjoin(Rating, Movie.id == Rating.movieId).\
                 filter(~Movie.id.in_(rated_movie_ids)).\
                 all()
     
-    # for movie in query_results:
-    #     print(movie)
-    
     result_formatted = [{"id": movie.id, "name": movie.name, "description": movie.description, "rating": movie.rating} 
                         for movie in query_results]
     print("results formatted", result_formatted[0])
 
-    # function to get movie recommendations pass in results formatted
+    v = reccomend_movies(1,7)
+    recommended_ids = v[1]
+    recommended_ids_int = [int(id) for id in recommended_ids]
+    filtered_movies = [movie for movie in result_formatted if movie['id'] in recommended_ids_int]
 
-    # return that output
+
+    
 
     session.close()
-    return {"data": result_formatted}
-
-    # Create a function to use in separate python file
-
-    # input: list of same_user_id, movieId, rating
-    # output: list of same_user_id, movieId, rating
+    return {"data": filtered_movies}
