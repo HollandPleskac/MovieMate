@@ -160,4 +160,7 @@ def get_movies(user_email: str):
     # Subquery to find movie IDs rated by the user
     rated_movie_ids = session.query(Rating.movieId).filter(Rating.userEmail == user_email).subquery()
 
+    # Query to find movies not rated by the user
+    query_results = session.query(Movie).filter(~Movie.id.in_(rated_movie_ids)).all()
+    
     
