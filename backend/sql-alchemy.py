@@ -37,4 +37,12 @@ class Movie(Base):
 
     # owner = Column(Integer, ForeignKey("people.ssn"))
 
-    
+    def __init__(self, name, description, imageUrl):
+        self.name = name
+        self.description = description
+        self.imageUrl = imageUrl
+
+    def __repr__(self):
+        return f"({self.id}) {self.name}"
+
+
