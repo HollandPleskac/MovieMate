@@ -54,3 +54,19 @@ class Movie(Base):
 
     def __repr__(self):
         return f"({self.id}) {self.name}"
+
+class Rating(Base):
+    __tablename__ = "ratings"
+
+    id = Column("id", Integer, primary_key=True, autoincrement=True)
+    userEmail = Column(String, ForeignKey("users.email"), nullable=False)  # Reference to User.email
+    movieId = Column(Integer, ForeignKey("movies.id"), nullable=False)
+    rating = Column("rating", Integer, nullable=True)
+
+    def __init__(self, userEmail, movieId, rating):
+        self.userEmail = userEmail
+        self.movieId = movieId
+        self.rating = rating
+
+    def __repr__(self):
+        return f"({self.userEmail}) ({self.movieId}) {self.rating}"
