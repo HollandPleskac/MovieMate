@@ -36,16 +36,17 @@ def pearson_correlation(user1, user2):
 
 def find_nearest_neighbor(userID, numNeighbors = 5):
     correlations = []
-    user_id = userID
     for otherUser in UserItemMatrix.index:
-        if user_id != otherUser:
-            corr = pearson_correlation(user_id, otherUser)
+        if userID != otherUser:
+            corr = pearson_correlation(userID, otherUser)
             correlations.append((otherUser, corr))
-        correlations.sort(key=lambda x: x[1], reverse=True)
-        return correlations[:numNeighbors]
+    correlations.sort(key=lambda x: x[1], reverse=True)
+    return correlations[:numNeighbors]
     
 
 def predict_rating(userId, movieId, numNeighbors = 5):
+    if userId not in UserItemMatrix.index:
+        return None
     neighbors = find_nearest_neighbor(userId, numNeighbors)
     num = den = 0
     for neighbor_id, similarity in neighbors:

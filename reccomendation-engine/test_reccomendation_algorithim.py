@@ -40,16 +40,38 @@ def test_find_nearest_neighbor():
     assert len(neighbors) <= 5
     # Optionally, check the type of elements in neighbors, etc.
 
+def test_find_nearest_neighbor_no_neighbors():
+    neighbors = find_nearest_neighbor(8)
+    assert len(neighbors) == 0 or all(neighbor[1] == 0 for neighbor in neighbors)
+
+def test_neighbor_similarity_scores():
+    neighbors = find_nearest_neighbor(3)
+    assert all(-1 <= neighbor[1] <= 1 for neighbor in neighbors)
+
 def test_predict_rating():
-    # Test with a valid user ID and movie ID
-    rating = predict_rating(1, 8)  # Assuming movie ID 10 exists in your mock data
+    rating = predict_rating(1, 2)  
     assert isinstance(rating, float) or rating is None
     if rating is not None:
-        assert 0.0 <= rating <= 5.0  # Assuming the rating scale is 0 to 5
+        assert 0.0 <= rating <= 5.0  
+
+def test_predict_rating_invalid_user():
+    predicted_rating = predict_rating(9, 2)
+    assert predicted_rating is None  
+
+def test_predict_rating_different_neighbor_counts():
+    for num_neighbors in [0, 1, 5, 10]:
+        predicted_rating = predict_rating(3, 4, numNeighbors=num_neighbors)
+        assert isinstance(predicted_rating, (float, type(None)))
+
 
 def test_recommend_movies():
     recommendations = reccomend_movies(1,5)
     assert isinstance(recommendations, pd.DataFrame)
     assert len(recommendations) <= 5  # Checks if 5 or fewer recommendations are returned
+
+def test_recommend_movies_different_counts():
+    for count in [1, 3, 10]:
+        recommendations = reccomend_movies(3, count)
+        assert len(recommendations) <= count
     
 
