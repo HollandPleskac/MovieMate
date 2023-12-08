@@ -93,6 +93,13 @@ Movie class is to manage info about movies.  Each class just has basic informati
  
  ## Screenshots
  > Screenshots of the input/output after running your application
+![image](https://github.com/cs100/final-project-nkhan040-bhuyn048-hples001-ssing299/assets/146979415/a19a435f-c28f-4491-927d-6e21f1012575)
+* This image displays a screen of unrated movies that span diverse genres. Using the movie recommendation engine to display movies that have not been rated but are curated to the users preferences.
+![image](https://github.com/cs100/final-project-nkhan040-bhuyn048-hples001-ssing299/assets/146979415/8a71f6c2-8dd9-43de-974f-7258e58413e0)
+* This image displays a screen of movies that the user has rated in the past and the numerical rating the user had assigned to the movie. This also serves as a watch history page for the user.
+![image](https://github.com/cs100/final-project-nkhan040-bhuyn048-hples001-ssing299/assets/146979415/14a03c23-7ea1-4081-9a8a-bdc8b6a4a2e5)
+* This image is the authentication method for the movie recommendation website. This allows the user to authenticate an account using their github login information which has a user movie preferrences.
+
  ## Installation/Usage
  > Instructions on installing and running your application
  ## Testing
