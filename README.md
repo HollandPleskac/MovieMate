@@ -1,4 +1,4 @@
-** Project Title: MovieMate - A Personalized Movie Recommendation System **
+### Project Title: MovieMate - A Personalized Movie Recommendation System
 
 Group Members: Shivam Singh: https://github.com/ShivamSinghNow Holland Pleskac: https://github.com/HollandPleskac Nashwaan Khan: https://github.com/UnrealN1K Bao: https://github.com/Bao-Huynh888
 
