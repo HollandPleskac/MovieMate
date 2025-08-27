@@ -50,19 +50,4 @@ Movie class is to manage info about movies.  Each class just has basic informati
 * We applied Single Responsibility Principle (SRP) because we gave each class only one responsibility. We updated our user class to only manage authentication.  We added more classes to manage user interactions with movies.  We applied Interface Segregation Principle (ISP) because clients aren't forced to depend on interfaces they don't use.  We added compositions only when a class cannot exist without another class and specified relationships between classes.  We also made sure to keep the minimum necessary classes while still adhering to SOLID principles to make development as simple as possible.
 ##### How did this change help you write better code?
 * Our codebase became more modular and maintainable with these changes. By applying the Single Responsibility Principle (SRP), we ensured that each class had only one reason to change. This separation of concerns makes it easier to manage and understand the code. For instance, the User class focusing solely on authentication simplifies its complexity and makes it less prone to errors during future modifications. The application of the Interface Segregation Principle (ISP) improved the overall design by ensuring that classes don't rely on unnecessary interfaces.  Incorporating compositions helped define clear relationships between classes ensuring they are tightly coupled only when necessary.
-
- 
- > ## Final deliverable
- > All group members will give a demo to the reader during lab time. ou should schedule your demo on Calendly with the same reader who took your second scrum meeting. The reader will check the demo and the project GitHub repository and ask a few questions to all the team members. 
- > Before the demo, you should do the following:
- > * Complete the sections below (i.e. Screenshots, Installation/Usage, Testing)
- > * Plan one more sprint (that you will not necessarily complete before the end of the quarter). Your In-progress and In-testing columns should be empty (you are not doing more work currently) but your TODO column should have a full sprint plan in it as you have done before. This should include any known bugs (there should be some) or new features you would like to add. These should appear as issues/cards on your Project board.
- > * Make sure your README file and Project board are up-to-date reflecting the current status of your project (e.g. any changes that you have made during the project such as changes to your class diagram). Previous versions should still be visible through your commit history. 
- 
- ## Screenshots
- > Screenshots of the input/output after running your application
- ## Installation/Usage
- > Instructions on installing and running your application
- ## Testing
- > How was your project tested/validated? If you used CI, you should have a "build passing" badge in this README.
  
