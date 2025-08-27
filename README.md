@@ -1,4 +1,4 @@
-#### Project Title: MovieMate - A Personalized Movie Recommendation System
+# Project Title: MovieMate - A Personalized Movie Recommendation System
 
 **Group Members:** Shivam Singh: https://github.com/ShivamSinghNow Holland Pleskac: https://github.com/HollandPleskac Nashwaan Khan: https://github.com/UnrealN1K Bao: https://github.com/Bao-Huynh888
 
@@ -6,7 +6,7 @@
 
 **Why is it important or interesting to us?** The world of cinema offers a vast array of experiences, emotions, and stories. However, the overwhelming choice can paralyze viewers in their selection process. We are passionate about utilizing data science to enhance user experiences. By developing MovieMate, we aim to bridge the gap between viewers and the perfect movie for their current mood or preference. We are also excited about delving deep into user-movie interaction data, understanding viewing patterns, and deriving meaningful insights from them.
 
-### Languages/tools/technologies:
+## Languages/tools/technologies:
 
 **Languages:** Python Frameworks/Libraries: scikit-learn (for machine learning algorithms) pandas (for data manipulation) numpy (for numerical operations) Flask (for web application development) Datasets: MovieLens dataset (contains user ratings for movies) Additional metadata from sources like IMDb or TMDb (for more comprehensive data) Database: SQLite or PostgreSQL (to store user profiles, movie details, and ratings) Front-end (optional): HTML/CSS (for designing the web application's interface) JavaScript (for interactive features on the webpage)
 
